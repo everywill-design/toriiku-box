@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トリイクボックス｜値段を計算して注文する</title>
+<meta name="description" content="サイズと台数を選ぶと、その場で値段が出ます。S・M・Lの3サイズ。本体・解錠デバイス・組立送料・オプション・毎月の費用まで、すべて税抜で表示します。">
+<link rel="canonical" href="https://toriiku-jp.com/toriiku-box/order.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="トリイク">
+<meta property="og:title" content="トリイクボックス｜値段を計算して注文する">
+<meta property="og:description" content="サイズと台数を選ぶと、その場で値段が出ます。">
+<meta property="og:url" content="https://toriiku-jp.com/toriiku-box/order.html">
+<meta property="og:image" content="https://toriiku-jp.com/toriiku-box/box_render_1200.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="style.css">
+<style>
+.shop{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+@media(max-width:900px){.shop{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.panel h3{font-size:17px;margin-bottom:12px}
+.block{margin-bottom:24px}
+.block>.t{font-weight:800;font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.block>.t i{width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-style:normal;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.sizecards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+@media(max-width:620px){.sizecards{grid-template-columns:1fr}}
+.sc{border:2px solid var(--line);border-radius:14px;padding:12px;text-align:center;cursor:pointer;background:#fff}
+.sc.on{border-color:var(--brand);background:var(--mint)}
+.sc b{display:block;font-size:20px;font-weight:900;color:var(--brand)}
+.sc small{display:block;font-size:12px;color:var(--sub);margin-top:4px;line-height:1.45}
+.opt{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:6px 10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff}
+.opt input[type=checkbox]{width:20px;height:20px;flex:0 0 auto;margin:0}
+.opt .ot{min-width:0}
+.opt .ot b{font-size:14.5px;display:block}
+.opt .ot small{color:var(--sub);font-size:12.5px;display:block;margin-top:2px}
+.opt .op{font-weight:800;white-space:nowrap;font-size:14px;text-align:right}
+.opt select{width:auto;min-width:84px;padding:8px 10px;font-size:14px}
+@media(max-width:560px){
+  .opt{grid-template-columns:auto minmax(0,1fr);row-gap:10px}
+  .opt select{grid-column:2;justify-self:start}
+  .opt .op{grid-column:2;justify-self:start;text-align:left}
+}
+.req{background:var(--soft)}
+.req .badgereq{font-size:11px;background:var(--brand);color:#fff;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.sum{position:sticky;top:76px}
+.sumrow{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.sumrow span:last-child{font-weight:700;white-space:nowrap}
+.sumtot{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:14px;border-top:2px solid var(--ink)}
+.sumtot b{font-size:28px;font-weight:900;color:var(--brand)}
+.monthly{background:var(--mint);border-radius:14px;padding:14px;margin-top:14px;font-size:14px}
+.monthly b{font-size:20px;color:var(--brand2);font-weight:900}
+.qty{display:flex;align-items:center;gap:10px}
+.qty select{width:auto;min-width:110px}
+.pay{display:grid;gap:8px}
+.pay label{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px;cursor:pointer;background:#fff}
+.pay input{width:20px;height:20px;margin-top:2px;flex:0 0 auto}
+.pay b{display:block;font-size:14.5px}
+.pay small{color:var(--sub);font-size:12.5px}
+.pay label.on{border-color:var(--brand);background:var(--mint)}
+.leaseNote{display:none;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:12px;font-size:13.5px;margin-top:10px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="index.html">トリイク<span>ボックス</span></a>
+  <div class="nav">
+    <a class="btn btn-o btn-s" href="index.html" data-ev="nav_back">サービスの説明</a>
+    <a class="btn btn-p btn-s" href="#order" data-ev="nav_order">申し込む</a>
+  </div>
+</div></header>
+
+<section style="padding:36px 0 8px"><div class="wrap center">
+  <span class="badge">値段の計算</span>
+  <h2>サイズと台数を選ぶと、<br class="sp">その場で値段が出ます。</h2>
+  <p class="lead">表示はすべて税抜です。追加の費用はありません。</p>
+</div></section>
+
+<section style="padding:20px 0 60px"><div class="wrap">
+<div class="shop">
+
+  <div>
+    <div class="panel">
+
+      <div class="block">
+        <div class="t"><i>1</i>サイズを選ぶ</div>
+        <select id="sizeSel" aria-label="サイズを選ぶ">
+          <option value="S">S ── 幅100cm（51〜100戸・小さな店舗）</option>
+          <option value="M">M ── 幅150cm（101〜200戸）</option>
+          <option value="L" selected>L ── 幅200cm（201戸以上・商業施設・駅）</option>
+        </select>
+        <div class="sizecards" id="sizeCards"></div>
+        <p class="fine">奥行70cm・高さ180cm は3サイズ共通です。置き場所の広さと、必要な荷物の数で選びます。迷ったら申し込みのメモに書いてください。こちらで選び直しをご案内します。</p>
+      </div>
+
+      <div class="block">
+        <div class="t"><i>2</i>台数を選ぶ</div>
+        <div class="qty">
+          <select id="qty" aria-label="台数">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+            <option>6</option><option>8</option><option>10</option><option>15</option><option>20</option><option>30</option>
+          </select>
+          <span>台</span>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="t"><i>3</i>必ず付くもの</div>
+        <div class="opt req"><input type="checkbox" checked disabled aria-label="解錠デバイス"><div class="ot"><b>解錠デバイス<span class="badgereq">必須</span></b><small>アプリのQRで扉を開ける装置。これが無いと扉が開きません。</small></div><div class="op">40,000円 / 台</div></div>
+        <div class="opt req"><input type="checkbox" checked disabled aria-label="組立と送料"><div class="ot"><b>組立＋送料<span class="badgereq">必須</span></b><small>現地での組立と配送。半日で終わります。電気は家庭用コンセントが1つあればOKです。</small></div><div class="op">145,000円 / 台</div></div>
+      </div>
+
+      <div class="block">
+        <div class="t"><i>4</i>オプション（後からでも買えます）</div>
+        <div class="opt"><input type="checkbox" id="o_divider"><div class="ot"><b>仕切り板セット（5cm間隔）</b><small>薄い荷物を本のように立てられます。棚1段ずつ選べます。</small></div><select id="n_divider" aria-label="仕切り板の段数"><option value="0">0段</option><option value="1">1段</option><option value="2">2段</option><option value="3">3段</option><option value="4" selected>4段</option></select><div class="op">8,000円 / 段</div></div>
+        <div class="opt"><input type="checkbox" id="o_shelf"><div class="ot"><b>追加の棚板</b><small>段を細かく分けたいときに。</small></div><select id="n_shelf" aria-label="追加棚板の枚数"><option value="0">0枚</option><option value="1" selected>1枚</option><option value="2">2枚</option><option value="3">3枚</option></select><div class="op">6,000円 / 枚</div></div>
+        <div class="opt"><input type="checkbox" id="o_wrap"><div class="ot"><b>物件名・ロゴのラッピング</b><small>物件名やお店のロゴを入れます。</small></div><div class="op">50,000円 / 台</div></div>
+        <div class="opt"><input type="checkbox" id="o_joint"><div class="ot"><b>連結金具</b><small>横に並べて固定します。2台以上のときに。</small></div><div class="op">15,000円 / 台</div></div>
+      </div>
+
+      <div class="block">
+        <div class="t"><i>5</i>払い方を選ぶ</div>
+        <div class="pay">
+          <label class="on"><input type="radio" name="pay" value="買切り" checked><span><b>買切り</b><small>最初にまとめてお支払い。補助金が使えるのはこの形です。</small></span></label>
+          <label><input type="radio" name="pay" value="リース"><span><b>リース（5年など）</b><small>毎月払いにできます。資産にしたくない場合はこちら。金額はお見積りします。</small></span></label>
+        </div>
+        <div class="leaseNote" id="leaseNote">リースをお選びの場合、下の合計は買切りのときの金額です。リース料は台数と期間で変わるため、お申し込みのあと1営業日以内にお見積りをお送りします。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div>
+    <div class="panel sum">
+      <h3>お見積り（税抜）</h3>
+      <div id="lines"></div>
+      <div class="sumtot"><span>合計（税抜）</span><b id="total">—</b></div>
+      <div class="sumrow" style="border:0"><span>消費税10%を足すと</span><span id="total_tax">—</span></div>
+      <div class="monthly">毎月の運営委託費<br><b id="monthly">—</b><br><small>通信費・アプリの運用・ポイントの原資・問い合わせ対応。サイズにかかわらず1台 月10,000円（税抜）からです。</small></div>
+      <div class="sumrow" style="border:0;margin-top:12px"><span>この構成で置ける荷物（薄い荷物）</span><span id="capThin">—</span></div>
+      <div class="sumrow" style="border:0"><span>置き場所の広さ</span><span id="capArea">—</span></div>
+      <a class="btn btn-p" href="#order" data-ev="cta_sum_order" style="width:100%;margin-top:16px">この内容で申し込む</a>
+      <p class="fine">補助金が使える自治体では、この金額から補助金が引かれます。申請書類は当社が作ります。</p>
+    </div>
+  </div>
+
+</div>
+</div></section>
+
+<section class="soft" id="order"><div class="wrap center">
+  <h2>この内容で申し込む</h2>
+  <p class="lead">入力は1分。1営業日以内にお見積書をお送りします。この場でのお支払いは発生しません。</p>
+  <form id="orderform" class="form" novalidate>
+    <div class="panel" style="text-align:left;padding:16px 18px">
+      <div style="font-weight:800;font-size:14px;margin-bottom:8px">お申し込みの内容</div>
+      <div id="orderSummary" style="font-size:14px;color:var(--sub);line-height:1.8"></div>
+    </div>
+    <div class="row2">
+      <label>お名前<input name="name" placeholder="例：山田 太郎" required></label>
+      <label>会社名・団体名（任意）<input name="company" placeholder="例：○○不動産／○○マンション管理組合"></label>
+    </div>
+    <div class="row2">
+      <label>メール<input name="email" type="email" placeholder="例：taro@example.com" required></label>
+      <label>電話（任意）<input name="phone" type="tel" placeholder="例：090-1234-5678"></label>
+    </div>
+    <div class="row2">
+      <label>置く場所の種類<select name="property_type" required><option value="">選んでください</option><option>賃貸マンション・アパート</option><option>分譲マンション（管理組合）</option><option>店舗・商業施設</option><option>駅・公共施設</option><option>オフィス・その他</option></select></label>
+      <label>戸数（おおよそ）<select name="units" required><option value="">選んでください</option><option>〜50戸</option><option>51〜100戸</option><option>101〜200戸</option><option>201戸〜</option><option>店舗・施設</option></select></label>
+    </div>
+    <label>置く場所の市区町村<input name="area" placeholder="例：板橋区" required></label>
+    <label>メモ（任意）<textarea id="noteField" rows="2" placeholder="例：置き場所の幅が130cmしかない／補助金が使えるか知りたい／いつ頃ほしい"></textarea></label>
+    <button class="btn btn-p" id="orderbtn" type="submit">この内容で申し込む（無料・お支払いはまだ発生しません）</button>
+    <p class="pp">送信で<a href="https://everywill-jp.com/privacy/" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意したものとします。カードでのお支払いは準備中です。いまはお見積書と請求書でのお取引となります。</p>
+  </form>
+  <div class="thanks" id="thanks" hidden>
+    <h3 style="font-size:22px;margin-bottom:8px">お申し込みをお受けしました。</h3>
+    <p class="lead" style="margin:0 auto 16px">1営業日以内に、お見積書と納期をメールでお送りします。</p>
+    <a class="btn btn-o" href="https://calendar.app.google/mQ4KKbAyhvEQ757f7" target="_blank" rel="noopener" data-ev="cta_thanks">先に30分の相談を予約する</a>
+  </div>
+</div></section>
+
+<section><div class="wrap center">
+  <h2>よくある質問</h2>
+  <div class="faq">
+    <details><summary>申し込んだら、すぐ支払いですか</summary><p>いいえ。まずお見積書をお送りします。ご確認のうえ、ご注文をいただいてから請求書をお送りします。</p></details>
+    <details><summary>納期はどれくらいですか</summary><p>ご注文から約2か月です。台数が多い場合はご相談ください。</p></details>
+    <details><summary>置けるかどうか、見てもらえますか</summary><p>はい。写真を送っていただくか、現地に伺って確認します。費用はかかりません。</p></details>
+    <details><summary>補助金はどうすればいいですか</summary><p>お住まいの自治体に制度があるか、こちらで調べます。申請書類も当社が作ります。</p></details>
+    <details><summary>毎月の費用は必ずかかりますか</summary><p>はい。アプリで扉を開ける仕組みを動かし続けるための費用です。1台 月10,000円（税抜）からです。</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap">株式会社Every WiLL　東京都新宿区西早稲田1-22-3　｜　<a href="index.html" style="text-decoration:underline">サービスの説明</a>　｜　<a href="https://everywill-jp.com/privacy/" style="text-decoration:underline">プライバシーポリシー</a></div></footer>
+
+<div class="sticky"><div class="in"><a class="btn btn-p" href="#order" data-ev="cta_sticky_order">この内容で申し込む</a></div></div>
+
+<script src="box.js"></script>
+<script>
+(function(){
+  var S=window.TB.SIZES, yen=window.TB.yen;
+  var sel=document.getElementById('sizeSel'), qty=document.getElementById('qty');
+  var cards=document.getElementById('sizeCards');
+  Object.keys(S).forEach(function(k){
+    var d=S[k];
+    var el=document.createElement('div'); el.className='sc'; el.dataset.k=k;
+    el.innerHTML='<b>'+k+'</b><small>幅'+(d.w/10)+'cm<br>薄い荷物 '+d.thin+'個<br>'+(d.sqm*0.3025).toFixed(2)+'坪（'+d.sqm.toFixed(2)+'㎡）<br>'+window.TB.man(d.price)+'</small>';
+    el.addEventListener('click',function(){ sel.value=k; calc(); });
+    cards.appendChild(el);
+  });
+  document.querySelectorAll('.pay label').forEach(function(l){
+    l.addEventListener('click',function(){
+      document.querySelectorAll('.pay label').forEach(function(x){x.classList.remove('on');});
+      l.classList.add('on');
+      setTimeout(calc,0);
+    });
+  });
+  var state={};
+  function calc(){
+    var k=sel.value, d=S[k], n=parseInt(qty.value,10)||1;
+    document.querySelectorAll('.sc').forEach(function(c){ c.classList.toggle('on', c.dataset.k===k); });
+    var lines=[];
+    lines.push(['本体 '+k+'サイズ × '+n+'台', d.price*n]);
+    lines.push(['解錠デバイス × '+n+'台', 40000*n]);
+    lines.push(['組立＋送料 × '+n+'台', 145000*n]);
+    var dv=document.getElementById('o_divider').checked ? (parseInt(document.getElementById('n_divider').value,10)||0) : 0;
+    if(dv) lines.push(['仕切り板セット '+dv+'段 × '+n+'台', 8000*dv*n]);
+    var sf=document.getElementById('o_shelf').checked ? (parseInt(document.getElementById('n_shelf').value,10)||0) : 0;
+    if(sf) lines.push(['追加の棚板 '+sf+'枚 × '+n+'台', 6000*sf*n]);
+    if(document.getElementById('o_wrap').checked) lines.push(['ラッピング × '+n+'台', 50000*n]);
+    if(document.getElementById('o_joint').checked) lines.push(['連結金具 × '+n+'台', 15000*n]);
+    var total=lines.reduce(function(a,b){return a+b[1];},0);
+    document.getElementById('lines').innerHTML=lines.map(function(l){
+      return '<div class="sumrow"><span>'+l[0]+'</span><span>'+yen(l[1])+'</span></div>';
+    }).join('');
+    document.getElementById('total').textContent=yen(total);
+    document.getElementById('total_tax').textContent=yen(Math.round(total*1.1));
+    document.getElementById('monthly').textContent=yen(10000*n)+' / 月';
+    document.getElementById('capThin').textContent=(d.thin*n).toLocaleString('ja-JP')+'個';
+    document.getElementById('capArea').textContent=(d.sqm*n).toFixed(2)+'㎡（'+(d.sqm*n*0.3025).toFixed(2)+'坪）';
+    var pay=document.querySelector('input[name=pay]:checked').value;
+    document.getElementById('leaseNote').style.display = (pay==='リース')?'block':'none';
+    state={size:k,qty:n,total:total,monthly:10000*n,pay:pay,
+      opts:lines.slice(3).map(function(l){return l[0];}).join('／')||'なし'};
+    document.getElementById('orderSummary').innerHTML=
+      '<b>'+k+'サイズ（幅'+(d.w/10)+'×奥行70×高さ180cm）</b>／ '+n+'台<br>'+
+      'オプション：'+state.opts+'<br>'+
+      '払い方：'+pay+'<br>'+
+      '合計（税抜）：<b style="color:#0f766e">'+yen(total)+'</b>　毎月：'+yen(10000*n);
+    try{ sessionStorage.setItem('tb_size',k); }catch(e){}
+  }
+  ['change','input'].forEach(function(t){
+    document.querySelectorAll('#sizeSel,#qty,#o_divider,#n_divider,#o_shelf,#n_shelf,#o_wrap,#o_joint').forEach(function(el){
+      el.addEventListener(t,calc);
+    });
+  });
+  var init='L'; try{ var s=sessionStorage.getItem('tb_size'); if(s) init=s; }catch(e){}
+  var q=new URLSearchParams(location.search); if(['S','M','L'].indexOf(q.get('size'))>=0) init=q.get('size');
+  sel.value=init; calc();
+  window.TB.initLeadForm('orderform','thanks','orderbtn',function(){
+    return {
+      size_interest: state.size,
+      message: '【注文申込】'+state.size+'サイズ × '+state.qty+'台／オプション：'+state.opts+
+               '／払い方：'+state.pay+'／合計（税抜）'+state.total+'円／毎月'+state.monthly+'円'+
+               '／メモ：'+(document.getElementById('noteField').value||'なし')
+    };
+  });
+})();
+</script>
+</body>
+</html>
