@@ -13,6 +13,9 @@
 <meta property="og:url" content="https://toriiku-jp.com/toriiku-box/order.html">
 <meta property="og:image" content="https://toriiku-jp.com/toriiku-box/box_render_1200.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 .shop{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
@@ -63,7 +66,7 @@
 <body>
 
 <header><div class="wrap">
-  <a class="logo" href="index.html">トリイク<span>ボックス</span></a>
+  <a class="logo" href="index.html"><i></i>トリイク<span>ボックス</span></a>
   <div class="nav">
     <a class="btn btn-o btn-s" href="index.html" data-ev="nav_back">サービスの説明</a>
     <a class="btn btn-p btn-s" href="#order" data-ev="nav_order">申し込む</a>
@@ -175,7 +178,7 @@
   <div class="thanks" id="thanks" hidden>
     <h3 style="font-size:22px;margin-bottom:8px">お申し込みをお受けしました。</h3>
     <p class="lead" style="margin:0 auto 16px">1営業日以内に、お見積書と納期をメールでお送りします。</p>
-    <a class="btn btn-o" href="https://calendar.app.google/mQ4KKbAyhvEQ757f7" target="_blank" rel="noopener" data-ev="cta_thanks">先に30分の相談を予約する</a>
+    <a class="btn btn-o" href="index.html#book" data-ev="cta_thanks">30分の相談を予約する</a>
   </div>
 </div></section>
 
@@ -245,7 +248,7 @@
       '<b>'+k+'サイズ（幅'+(d.w/10)+'×奥行70×高さ180cm）</b>／ '+n+'台<br>'+
       'オプション：'+state.opts+'<br>'+
       '払い方：'+pay+'<br>'+
-      '合計（税抜）：<b style="color:#0f766e">'+yen(total)+'</b>　毎月：'+yen(10000*n);
+      '合計（税抜）：<b style="color:#FF7A1F">'+yen(total)+'</b>　毎月：'+yen(10000*n);
     try{ sessionStorage.setItem('tb_size',k); }catch(e){}
   }
   ['change','input'].forEach(function(t){
