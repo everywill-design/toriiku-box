@@ -16,19 +16,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=32">
+<link rel="stylesheet" href="style.css?v=40">
 <style>
 .shop{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
 @media(max-width:900px){.shop{grid-template-columns:1fr}}
-.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
-.panel h3{font-size:17px;margin-bottom:12px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r2);padding:26px;box-shadow:var(--sh)}
+.panel h3{font-size:17.5px;margin-bottom:14px;font-weight:900}
 .block{margin-bottom:24px}
-.block>.t{font-weight:800;font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.block>.t{font-weight:900;font-size:15.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .block>.t i{width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-style:normal;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
 .sizecards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
 @media(max-width:620px){.sizecards{grid-template-columns:1fr}}
-.sc{border:2px solid var(--line);border-radius:14px;padding:12px;text-align:center;cursor:pointer;background:#fff}
-.sc.on{border-color:var(--brand);background:var(--mint)}
+.sc{border:2px solid var(--line);border-radius:16px;padding:14px 12px;text-align:center;cursor:pointer;background:#fff;transition:.15s}
+.sc:hover{border-color:#FFC999}
+.sc.on{border-color:var(--brand);background:var(--tint);box-shadow:var(--sh2)}
 .sc b{display:block;font-size:20px;font-weight:900;color:var(--brand)}
 .sc small{display:block;font-size:12px;color:var(--sub);margin-top:4px;line-height:1.45}
 .opt{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:6px 10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff}
@@ -45,12 +46,12 @@
 }
 .req{background:var(--soft)}
 .req .badgereq{font-size:11px;background:var(--brand);color:#fff;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
-.sum{position:sticky;top:76px}
+.sum{position:sticky;top:86px}
 .sumrow{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;padding:7px 0;border-bottom:1px dashed var(--line)}
 .sumrow span:last-child{font-weight:700;white-space:nowrap}
 .sumtot{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:14px;border-top:2px solid var(--ink)}
-.sumtot b{font-size:28px;font-weight:900;color:var(--brand)}
-.monthly{background:var(--mint);border-radius:14px;padding:14px;margin-top:14px;font-size:14px}
+.sumtot b{font-size:30px;font-weight:900;color:var(--brand);letter-spacing:-.03em}
+.monthly{background:var(--tint);border-radius:16px;padding:16px;margin-top:16px;font-size:14px;line-height:1.8}
 .monthly b{font-size:20px;color:var(--brand2);font-weight:900}
 .qty{display:flex;align-items:center;gap:10px}
 .qty select{width:auto;min-width:110px}
@@ -59,24 +60,31 @@
 .pay input{width:20px;height:20px;margin-top:2px;flex:0 0 auto}
 .pay b{display:block;font-size:14.5px}
 .pay small{color:var(--sub);font-size:12.5px}
-.pay label.on{border-color:var(--brand);background:var(--mint)}
+.pay label.on{border-color:var(--brand);background:var(--tint)}
 .leaseNote{display:none;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:12px;font-size:13.5px;margin-top:10px}
 </style>
 </head>
 <body>
+<div class="top-accent"></div>
 
 <header><div class="wrap">
   <a class="logo" href="index.html"><i></i>トリイク<span>ボックス</span></a>
+  <span class="tagpill">見積りをつくる</span>
   <div class="nav">
     <a class="btn btn-o btn-s" href="index.html" data-ev="nav_back">サービスの説明</a>
-    <a class="btn btn-p btn-s" href="#order" data-ev="nav_order">申し込む</a>
+    <a class="btn btn-p btn-s" href="#order" data-ev="nav_order">申し込む<span class="ar">→</span></a>
   </div>
 </div></header>
 
-<section style="padding:36px 0 8px"><div class="wrap center">
-  <span class="badge">値段の計算</span>
-  <h2>サイズと台数を選ぶと、<br class="sp">その場で値段が出ます。</h2>
-  <p class="lead">表示はすべて税抜です。追加の費用はありません。</p>
+<section class="fv" style="padding:46px 0 30px"><div class="wrap center" style="display:block">
+  <span class="eyebrow">Estimate</span>
+  <h2>サイズと台数を選ぶと、<br class="sp">その場で<em>値段が出ます</em>。</h2>
+  <p class="lead">表示はすべて税抜です。かくれた費用はありません。この画面でお支払いは発生しません。</p>
+  <div class="crowns" style="margin-top:26px">
+    <figure><img src="https://retail.toriiku-jp.com/img/point1.webp" alt="国土交通省「多様な受取方法等の普及促進実証事業」に採択" width="156" height="92"></figure>
+    <figure><img src="https://retail.toriiku-jp.com/img/point2.webp" alt="スタートアップアワード最優秀賞 受賞" width="156" height="92"></figure>
+    <figure><img src="https://retail.toriiku-jp.com/img/point3.webp" alt="NHKおはよう日本・日テレZIP! ほかメディア掲載" width="156" height="92"></figure>
+  </div>
 </div></section>
 
 <section style="padding:20px 0 60px"><div class="wrap">
@@ -88,9 +96,9 @@
       <div class="block">
         <div class="t"><i>1</i>サイズを選ぶ</div>
         <select id="sizeSel" aria-label="サイズを選ぶ">
-          <option value="S">S ── 幅100cm（51〜100戸・小さな店舗）</option>
+          <option value="S" selected>S ── 幅100cm（51〜100戸・小さな店舗）</option>
           <option value="M">M ── 幅150cm（101〜200戸）</option>
-          <option value="L" selected>L ── 幅200cm（201戸以上・商業施設・駅）</option>
+          <option value="L">L ── 幅200cm（201戸以上・商業施設・駅）</option>
         </select>
         <div class="sizecards" id="sizeCards"></div>
         <p class="fine">奥行70cm・高さ180cm は3サイズ共通です。置き場所の広さと、必要な荷物の数で選びます。迷ったら申し込みのメモに書いてください。こちらで選び直しをご案内します。</p>
@@ -124,7 +132,7 @@
       <div class="block">
         <div class="t"><i>5</i>払い方を選ぶ</div>
         <div class="pay">
-          <label class="on"><input type="radio" name="pay" value="買切り" checked><span><b>買切り</b><small>最初にまとめてお支払い。補助金が使えるのはこの形です。</small></span></label>
+          <label class="on"><input type="radio" name="pay" value="買切り" checked><span><b>買切り</b><small>最初にまとめてお支払い。自治体の補助制度が使えるのはこの形です。</small></span></label>
           <label><input type="radio" name="pay" value="リース"><span><b>リース（5年など）</b><small>毎月払いにできます。資産にしたくない場合はこちら。金額はお見積りします。</small></span></label>
         </div>
         <div class="leaseNote" id="leaseNote">リースをお選びの場合、下の合計は買切りのときの金額です。リース料は台数と期間で変わるため、お申し込みのあと1営業日以内にお見積りをお送りします。</div>
@@ -143,14 +151,15 @@
       <div class="sumrow" style="border:0;margin-top:12px"><span>この構成で置ける荷物（薄い荷物）</span><span id="capThin">—</span></div>
       <div class="sumrow" style="border:0"><span>置き場所の広さ</span><span id="capArea">—</span></div>
       <a class="btn btn-p" href="#order" data-ev="cta_sum_order" style="width:100%;margin-top:16px">この内容で申し込む</a>
-      <p class="fine">補助金が使える自治体では、この金額から補助金が引かれます。申請書類は当社が作ります。</p>
+      <p class="fine">お住まいの自治体に補助制度があれば、この金額から補助が引かれます。使えるかどうかの確認と申請書類の作成は当社が行います。</p>
     </div>
   </div>
 
 </div>
 </div></section>
 
-<section class="soft" id="order"><div class="wrap center">
+<section class="cream" id="order"><div class="wrap center">
+  <span class="eyebrow">Apply</span>
   <h2>この内容で申し込む</h2>
   <p class="lead">入力は1分。1営業日以内にお見積書をお送りします。この場でのお支払いは発生しません。</p>
   <form id="orderform" class="form" novalidate>
@@ -183,23 +192,24 @@
 </div></section>
 
 <section><div class="wrap center">
+  <span class="eyebrow">FAQ</span>
   <h2>よくある質問</h2>
   <div class="faq">
     <details><summary>申し込んだら、すぐ支払いですか</summary><p>いいえ。まずお見積書をお送りします。ご確認のうえ、ご注文をいただいてから請求書をお送りします。</p></details>
     <details><summary>納期はどれくらいですか</summary><p>ご注文から約2か月です。台数が多い場合はご相談ください。</p></details>
     <details><summary>置けるかどうか、見てもらえますか</summary><p>はい。写真を送っていただくか、現地に伺って確認します。費用はかかりません。</p></details>
-    <details><summary>補助金はどうすればいいですか</summary><p>お住まいの自治体に制度があるか、こちらで調べます。申請書類も当社が作ります。</p></details>
+    <details><summary>補助制度はどうすればいいですか</summary><p>お住まいの自治体に制度があるか、こちらで調べます。申請書類も当社が作ります。対象外の場合もあります。</p></details>
     <details><summary>毎月の費用は必ずかかりますか</summary><p>はい。アプリで扉を開ける仕組みを動かし続けるための費用です。1台 月10,000円（税抜）からです。</p></details>
   </div>
 </div></section>
 
 
 
-<footer><div class="wrap"><span>株式会社Every WiLL　東京都新宿区西早稲田1-22-3</span><a href="index.html">サービスの説明</a><a href="https://toriiku-jp.com/">トリイク</a><a href="https://everywill-jp.com/privacy/">プライバシーポリシー</a></div></footer>
+<footer><div class="wrap"><span>株式会社Every WiLL　東京都新宿区西早稲田1-22-3</span><a href="index.html">サービスの説明</a><a href="https://retail.toriiku-jp.com/">トリイクスポット</a><a href="https://toriiku-jp.com/">トリイク</a><a href="https://everywill-jp.com/privacy/">プライバシーポリシー</a></div></footer>
 
-<div class="sticky"><div class="in"><a class="btn btn-p" href="#order" data-ev="cta_sticky_order">この内容で申し込む</a></div></div>
+<div class="sticky"><div class="in"><a class="btn btn-p" href="#order" data-ev="cta_sticky_order">この内容で申し込む</a><a class="btn btn-o" href="index.html#book" data-ev="cta_sticky_book">相談する</a></div></div>
 
-<script src="box.js?v=32"></script>
+<script src="box.js?v=40"></script>
 <script>
 (function(){
   var S=window.TB.SIZES, yen=window.TB.yen;
@@ -258,7 +268,7 @@
       el.addEventListener(t,calc);
     });
   });
-  var init='L'; try{ var s=sessionStorage.getItem('tb_size'); if(s) init=s; }catch(e){}
+  var init='S'; try{ var s=sessionStorage.getItem('tb_size'); if(s) init=s; }catch(e){}
   var q=new URLSearchParams(location.search); if(['S','M','L'].indexOf(q.get('size'))>=0) init=q.get('size');
   sel.value=init; calc();
   window.TB.initLeadForm('orderform','thanks','orderbtn',function(){
