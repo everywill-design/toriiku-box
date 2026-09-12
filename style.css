@@ -86,8 +86,7 @@ header .wrap{display:flex;align-items:center;gap:12px;height:70px}
 .marquee{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .mtrack{display:flex;align-items:center;gap:46px;padding-right:46px;flex:none;animation:mv 46s linear infinite}
 .marquee:hover .mtrack{animation-play-state:paused}
-.mtrack img{height:44px;width:auto;max-width:none;object-fit:contain;filter:grayscale(1);opacity:.72;transition:.2s}
-.mtrack img:hover{filter:none;opacity:1}
+.mtrack img{height:46px;width:auto;max-width:none;object-fit:contain;opacity:1}
 @keyframes mv{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 @media(max-width:700px){.mtrack img{height:32px}.mtrack{gap:30px;padding-right:30px}}
 @media(prefers-reduced-motion:reduce){.mtrack{animation:none}}
@@ -236,6 +235,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
 .sticky .in{display:flex;gap:10px;max-width:560px;margin:0 auto}
 .sticky .btn{flex:1;padding:15px 10px;font-size:15px}
 @media(max-width:880px){.sticky{display:block}body{padding-bottom:80px}}
+
+/* ---------- urgency bar ---------- */
+.urg{margin-top:30px;background:#141210;color:#fff;border-radius:var(--r2);padding:26px 28px;display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:left}
+.urg b{font-size:clamp(17px,2.6vw,22px);font-weight:900;letter-spacing:-.01em}
+.urg span{color:#c9c2b8;font-size:13.5px;line-height:1.8;max-width:520px}
 
 /* ---------- misc ---------- */
 .ribbon{background:#141210;color:#e0dbd3;font-size:13px;padding:16px 0}
