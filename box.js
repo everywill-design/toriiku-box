@@ -30,13 +30,13 @@
   };
   var OPTS={
     device:{name:'解錠デバイス（必ずセット）',price:40000,req:true},
-    install:{name:'組立＋送料',price:145000,req:true},
+    install:{name:'組立＋送料',price:175000,req:true},
     divider:{name:'仕切り板セット（5cm間隔・棚1段ぶん）',price:8000},
     shelf:{name:'追加の棚板',price:6000},
     wrap:{name:'物件名・ロゴのラッピング',price:50000},
     joint:{name:'連結金具（横に並べて固定）',price:15000}
   };
-  var MONTHLY=10000;
+  var MONTHLY=15000;
 
   function initLeadForm(formId,thanksId,btnId,extra){
     var form=document.getElementById(formId); if(!form) return;

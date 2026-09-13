@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://retail.toriiku-jp.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=45">
+<link rel="stylesheet" href="style.css?v=46">
 </head>
 <body>
 <div class="top-accent"></div>
@@ -246,7 +246,7 @@
   </div>
   <div class="specs" style="margin-top:14px">
     <div class="spec"><b data-f="dim" style="font-size:15px;line-height:1.55">幅100×奥行70×高さ180cm</b><small>外形</small></div>
-    <div class="spec"><b data-f="fee">10,000円</b><small>毎月の運営委託費（税抜）</small></div>
+    <div class="spec"><b data-f="fee">15,000円</b><small>毎月の運営委託費（税抜）</small></div>
     <div class="spec"><b data-f="per">6,076円</b><small>荷物1個あたりの本体価格</small></div>
     <div class="spec"><b data-f="ratio">11.7</b><small>他社の何分の1か（1個あたり）</small></div>
   </div>
@@ -346,7 +346,7 @@
     <details><summary>電気や工事は必要ですか</summary><p>家庭用コンセントが1つあれば動きます。配線が要るときも、延長コードを這わせる程度です。床への固定は半日で終わります。</p></details>
     <details><summary>いまの宅配ボックスはそのままでいいですか</summary><p>はい。そのまま残して、横や近くに足せます。満杯になりやすい薄い荷物がトリイクボックスに移るので、今のボックスにも余裕が生まれます。</p></details>
     <details><summary>薄い荷物を立てると、たおれませんか</summary><p>5cm間隔の仕切り板をオプションでご用意しています。棚1段ずつ買い足せます。</p></details>
-    <details><summary>毎月の費用は何に使われますか</summary><p>通信費、アプリの運用、ポイントの原資、問い合わせ対応です。サイズにかかわらず月10,000円（税抜）からです。</p></details>
+    <details><summary>毎月の費用は何に使われますか</summary><p>通信費、アプリの運用、ポイントの原資、問い合わせ対応です。サイズにかかわらず1台 月15,000円（税抜）からです。</p></details>
     <details><summary>荷物がなくなったり、取り違えたりしませんか</summary><p>アプリのQRコードで開けるので、誰がいつ開けたかの記録が残ります。国土交通省の実証3か所では、事故は0件です。</p></details>
   </div>
 </div></section>
@@ -416,7 +416,7 @@
 
 <div class="sticky"><div class="in"><a class="btn btn-p" href="#contact" data-ev="cta_sticky">資料をもらう</a><a class="btn btn-o" href="#book" data-ev="cta_sticky_book">相談を予約</a></div></div>
 
-<script src="box.js?v=45"></script>
+<script src="box.js?v=46"></script>
 <script>
 (function(){
   var sel=document.getElementById('sizeSel');
@@ -425,7 +425,7 @@
     var rivalCap=Math.round(d.sqm*30.2), rivalPrice=rivalCap/7*496100;
     var v={
       label:k, thin:d.thin, mix:d.mix, sqm:d.sqm.toFixed(2), tsubo:(d.sqm*0.3025).toFixed(2),
-      wcm:d.w/10, dim:'幅'+(d.w/10)+'×奥行70×高さ180cm', price:man(d.price), fee:y(10000),
+      wcm:d.w/10, dim:'幅'+(d.w/10)+'×奥行70×高さ180cm', price:man(d.price), fee:y(window.TB.MONTHLY),
       per:y(Math.round(d.price/d.thin)), ratio:(70871/(d.price/d.thin)).toFixed(1),
       rivalCap:rivalCap, rivalPrice:man(Math.round(rivalPrice/10000)*10000),
       afterSub:man(d.price-250000)

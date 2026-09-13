@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=45">
+<link rel="stylesheet" href="style.css?v=46">
 <style>
 .shop{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
 @media(max-width:900px){.shop{grid-template-columns:1fr}}
@@ -124,7 +124,7 @@
       <div class="block">
         <div class="t"><i>3</i>必ず付くもの</div>
         <div class="opt req"><input type="checkbox" checked disabled aria-label="解錠デバイス"><div class="ot"><b>解錠デバイス<span class="badgereq">必須</span></b><small>アプリのQRで扉を開ける装置。これが無いと扉が開きません。</small></div><div class="op">40,000円 / 台</div></div>
-        <div class="opt req"><input type="checkbox" checked disabled aria-label="組立と送料"><div class="ot"><b>組立＋送料<span class="badgereq">必須</span></b><small>現地での組立と配送。半日で終わります。電気は家庭用コンセントが1つあればOKです。</small></div><div class="op">145,000円 / 台</div></div>
+        <div class="opt req"><input type="checkbox" checked disabled aria-label="組立と送料"><div class="ot"><b>組立＋送料<span class="badgereq">必須</span></b><small>現地での組立と配送。半日で終わります。電気は家庭用コンセントが1つあればOKです。</small></div><div class="op">175,000円 / 台</div></div>
       </div>
 
       <div class="block">
@@ -153,7 +153,7 @@
       <div id="lines"></div>
       <div class="sumtot"><span>合計（税抜）</span><b id="total">—</b></div>
       <div class="sumrow" style="border:0"><span>消費税10%を足すと</span><span id="total_tax">—</span></div>
-      <div class="monthly">毎月の運営委託費<br><b id="monthly">—</b><br><small>通信費・アプリの運用・ポイントの原資・問い合わせ対応。サイズにかかわらず1台 月10,000円（税抜）からです。</small></div>
+      <div class="monthly">毎月の運営委託費<br><b id="monthly">—</b><br><small>通信費・アプリの運用・ポイントの原資・問い合わせ対応。サイズにかかわらず1台 月15,000円（税抜）からです。</small></div>
       <div class="sumrow" style="border:0;margin-top:12px"><span>この構成で置ける荷物（薄い荷物）</span><span id="capThin">—</span></div>
       <div class="sumrow" style="border:0"><span>置き場所の広さ</span><span id="capArea">—</span></div>
       <a class="btn btn-p" href="#order" data-ev="cta_sum_order" style="width:100%;margin-top:16px">この内容で申し込む</a>
@@ -224,7 +224,7 @@
     <details><summary>納期はどれくらいですか</summary><p>ご注文から約2か月です。台数が多い場合はご相談ください。</p></details>
     <details><summary>置けるかどうか、見てもらえますか</summary><p>はい。写真を送っていただくか、現地に伺って確認します。費用はかかりません。</p></details>
     <details><summary>補助制度はどうすればいいですか</summary><p>お住まいの自治体に制度があるか、こちらで調べます。申請書類も当社が作ります。対象外の場合もあります。</p></details>
-    <details><summary>毎月の費用は必ずかかりますか</summary><p>はい。アプリで扉を開ける仕組みを動かし続けるための費用です。1台 月10,000円（税抜）からです。</p></details>
+    <details><summary>毎月の費用は必ずかかりますか</summary><p>はい。アプリで扉を開ける仕組みを動かし続けるための費用です。1台 月15,000円（税抜）からです。</p></details>
   </div>
 </div></section>
 
@@ -234,7 +234,7 @@
 
 <div class="sticky"><div class="in"><a class="btn btn-p" href="#order" data-ev="cta_sticky_order">この内容で申し込む</a><a class="btn btn-o" href="index.html#book" data-ev="cta_sticky_book">相談する</a></div></div>
 
-<script src="box.js?v=45"></script>
+<script src="box.js?v=46"></script>
 <script>
 (function(){
   var S=window.TB.SIZES, yen=window.TB.yen;
@@ -260,8 +260,8 @@
     document.querySelectorAll('.sc').forEach(function(c){ c.classList.toggle('on', c.dataset.k===k); });
     var lines=[];
     lines.push(['本体 '+k+'サイズ × '+n+'台', d.price*n]);
-    lines.push(['解錠デバイス × '+n+'台', 40000*n]);
-    lines.push(['組立＋送料 × '+n+'台', 145000*n]);
+    lines.push(['解錠デバイス × '+n+'台', window.TB.OPTS.device.price*n]);
+    lines.push(['組立＋送料 × '+n+'台', window.TB.OPTS.install.price*n]);
     var dv=document.getElementById('o_divider').checked ? (parseInt(document.getElementById('n_divider').value,10)||0) : 0;
     if(dv) lines.push(['仕切り板セット '+dv+'段 × '+n+'台', 8000*dv*n]);
     var sf=document.getElementById('o_shelf').checked ? (parseInt(document.getElementById('n_shelf').value,10)||0) : 0;
@@ -274,12 +274,12 @@
     }).join('');
     document.getElementById('total').textContent=yen(total);
     document.getElementById('total_tax').textContent=yen(Math.round(total*1.1));
-    document.getElementById('monthly').textContent=yen(10000*n)+' / 月';
+    document.getElementById('monthly').textContent=yen(window.TB.MONTHLY*n)+' / 月';
     document.getElementById('capThin').textContent=(d.thin*n).toLocaleString('ja-JP')+'個';
     document.getElementById('capArea').textContent=(d.sqm*n).toFixed(2)+'㎡（'+(d.sqm*n*0.3025).toFixed(2)+'坪）';
     var pay=document.querySelector('input[name=pay]:checked').value;
     document.getElementById('leaseNote').style.display = (pay==='リース')?'block':'none';
-    state={size:k,qty:n,total:total,monthly:10000*n,pay:pay,
+    state={size:k,qty:n,total:total,monthly:window.TB.MONTHLY*n,pay:pay,
       opts:lines.slice(3).map(function(l){return l[0];}).join('／')||'なし'};
     document.getElementById('orderSummary').innerHTML=
       '<b>'+k+'サイズ（幅'+(d.w/10)+'×奥行70×高さ180cm）</b>／ '+n+'台<br>'+
