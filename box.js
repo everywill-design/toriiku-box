@@ -11,8 +11,11 @@
     if(owner) return Promise.resolve();
     return fetch(SB_URL+'/rest/v1/'+table,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(body),keepalive:true}).catch(function(){});
   }
+  var ref=''; try{ ref=document.referrer||''; }catch(e){}
   function ev(name,label){
-    post('tb_events',{event:name,label:label||null,camp:camp,utm:utm,page:location.pathname,session_id:sid,user_agent:navigator.userAgent.slice(0,200)});
+    var u={}; for(var k in utm) u[k]=utm[k];
+    if(ref) u.referrer=ref.slice(0,200);
+    post('tb_events',{event:name,label:label||null,camp:camp,utm:u,page:location.pathname,session_id:sid,user_agent:navigator.userAgent.slice(0,200)});
   }
   function yen(n){ return Math.round(n).toLocaleString('ja-JP')+'円'; }
   function man(n){
