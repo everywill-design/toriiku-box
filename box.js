@@ -23,18 +23,19 @@
     return (Math.abs(m-Math.round(m))<0.005 ? Math.round(m) : m.toFixed(1))+'万円';
   }
 
+  /* price は設置まで込みの一式価格（税抜）。本体・解錠デバイス・鍵・組立・配送・床への固定を含む。
+     屋内設置／東京23区が前提。2026-10-19 改定。 */
   var SIZES={
-    S:{w:1000,sqm:0.70,thin:79, mix:43, price:480000, fit:'51〜100戸・小さな店舗', members:60},
-    M:{w:1500,sqm:1.05,thin:128,mix:68, price:780000, fit:'101〜200戸',            members:150},
+    S:{w:1000,sqm:0.70,thin:79, mix:43, price:980000, fit:'51〜100戸・小さな店舗', members:60},
+    M:{w:1500,sqm:1.05,thin:128,mix:68, price:1080000,fit:'101〜200戸',            members:150},
     L:{w:2000,sqm:1.40,thin:173,mix:93, price:1280000,fit:'201戸以上・商業施設・駅',members:300}
   };
   var OPTS={
-    device:{name:'解錠デバイス（必ずセット）',price:40000,req:true},
-    install:{name:'組立＋送料',price:175000,req:true},
-    divider:{name:'仕切り板セット（5cm間隔・棚1段ぶん）',price:8000},
-    shelf:{name:'追加の棚板',price:6000},
+    outdoor:{name:'屋外設置（基礎工事を含む）',price:150000},
+    divider:{name:'仕切り板（5枚1組）',price:8000},
+    shelf:{name:'追加の棚板（1枚）',price:6000},
     wrap:{name:'物件名・ロゴのラッピング',price:50000},
-    joint:{name:'連結金具（横に並べて固定）',price:15000}
+    joint:{name:'連結金具（1セット）',price:15000}
   };
   var MONTHLY=15000;
 
